@@ -70,6 +70,7 @@ def evaluate_report(report_text, llm):
     return evaluation_results
 
 
+
 def main():
     llm = initialize_model()
     
@@ -103,7 +104,7 @@ def main():
                             # Display each detected concern as a button-like shape
                             for concern in detected:
                                 st.markdown(f"""
-                                    <div style="margin: 5px; padding: 10px; background-color: #4CAF50; color: white; border-radius: 5px; text-align: center;">
+                                    <div style="margin: 5px; padding: 10px; background-color: #4CAF50; color: white; border-radius: 5px; text-align: center; min-width: 100px; flex-grow: 1;">
                                         {concern}
                                     </div>
                                 """, unsafe_allow_html=True)

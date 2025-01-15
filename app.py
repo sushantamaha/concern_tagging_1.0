@@ -95,16 +95,16 @@ def main():
                     st.subheader("Analysis Results")
                     
                     if detected:
-                        # Create a box with all the buttons inside it
+                        # Create a box with all the buttons inside it using CSS Grid
                         with st.container():
                             st.markdown("""
-                                <div style="border: 2px solid #4CAF50; padding: 10px; margin-bottom: 10px; background-color: #e8f5e9; border-radius: 5px; display: flex; flex-wrap: wrap; gap: 10px;">
+                                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; border: 2px solid #4CAF50; padding: 10px; margin-bottom: 10px; background-color: #e8f5e9; border-radius: 5px;">
                             """, unsafe_allow_html=True)
                             
-                            # Display each detected concern as a button-like shape in a row
+                            # Display each detected concern as a grid item
                             for concern in detected:
                                 st.markdown(f"""
-                                    <div style="padding: 10px; background-color: #4CAF50; color: white; border-radius: 5px; text-align: center; flex: 1 1 150px;">
+                                    <div style="padding: 10px; background-color: #4CAF50; color: white; border-radius: 5px; text-align: center; min-height: 50px;">
                                         {concern}
                                     </div>
                                 """, unsafe_allow_html=True)

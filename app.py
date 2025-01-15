@@ -69,100 +69,49 @@ def evaluate_report(report_text, llm):
     
     return evaluation_results
 
+
 def main():
-    if "tags" not in st.session_state:
-        st.session_state.tags = []
+    llm = initialize_model()
     
-    # Text input for adding new values
-    text_input = st.text_input("Enter a value")
+    # Create text input area
+    user_input = st.text_area(
+        "Please enter your thoughts or feelings - :",
+        height=200,
+        placeholder="Share what's on your mind..."
+    )
     
-    if text_input:
-        if text_input not in st.session_state.tags:
-            st.session_state.tags.append(text_input)
-    
-    # Display tags in a horizontal layout with remove buttons
-    if st.session_state.tags:
-        cols = st.columns(len(st.session_state.tags))
-        for idx, (tag, col) in enumerate(zip(st.session_state.tags, cols)):
-            with col:
-                # Create a container for each tag
-                tag_container = st.container()
-                with tag_container:
-                    st.markdown(
-                        f"""
-                        <div style="
-                            background-color: #f0f2f6;
-                            border-radius: 5px;
-                            padding: 5px 10px;
-                            margin: 2px;
-                            display: inline-block;
-                        ">
-                            {tag}
-                            <button 
-                                onclick="this.parentElement.style.display='none';"
-                                style="
-                                    background: none;
-                                    border: none;
-                                    color: #ff0000;
-                                    cursor: pointer;
-                                    padding-left: 5px;
-                                "
-                            >×</button>
-                        </div>
-                        """,
-                        unsafe_allow_html=True
-                    )
-                if st.button("×", key=f"remove_{idx}"):
-                    st.session_state.tags.pop(idx)
-                    st.rerun()
-    else:
-        st.warning("Please enter some text to analyze.")
-
-
-    
-
-# def main():
-#     llm = initialize_model()
-    
-#     # Create text input area
-#     user_input = st.text_area(
-#         "Please enter your thoughts or feelings - :",
-#         height=200,
-#         placeholder="Share what's on your mind..."
-#     )
-    
-#     if st.button("Analyze"):
-#         if user_input:
-#             if len(user_input) <= 1000 :  
-#                 with st.spinner("Analyzing your text..."):
-#                     # Get evaluation results
+    if st.button("Analyze"):
+        if user_input:
+            if len(user_input) <= 1000 :  
+                with st.spinner("Analyzing your text..."):
+                    # Get evaluation results
                     
-#                     results = evaluate_report(user_input, llm)
+                    results = evaluate_report(user_input, llm)
                     
-#                     # Convert results to DataFrame for better display
-#                     df = pd.DataFrame([
-#                         {"Category": k.replace("_", " ").title(), 
-#                          "Detected": "Yes" if v == True else "No" if v == False else "Unclear"}
-#                         for k, v in results.items()
-#                     ])
+                    # Convert results to DataFrame for better display
+                    df = pd.DataFrame([
+                        {"Category": k.replace("_", " ").title(), 
+                         "Detected": "Yes" if v == True else "No" if v == False else "Unclear"}
+                        for k, v in results.items()
+                    ])
                     
-#                     # Display results
-#                     st.subheader("Analysis Results")
+                    # Display results
+                    st.subheader("Analysis Results")
                     
-#                     # Create three columns for different types of results
-#                     detected = df[df["Detected"] == "Yes"]["Category"].tolist()
-#                     not_detected = df[df["Detected"] == "No"]["Category"].tolist()
-#                     unclear = df[df["Detected"] == "Unclear"]["Category"].tolist()
+                    # Create three columns for different types of results
+                    detected = df[df["Detected"] == "Yes"]["Category"].tolist()
+                    not_detected = df[df["Detected"] == "No"]["Category"].tolist()
+                    unclear = df[df["Detected"] == "Unclear"]["Category"].tolist()
                     
-#                     col1, col2, col3 = st.columns(3)
+                    col1, col2, col3 = st.columns(3)
                     
-#                     with col1:
-#                         st.markdown("### 🔍 Detected Patterns")
-#                         if detected:
-#                             for item in detected:
-#                                 st.markdown(f"- {item}")
-#                         else:
-#                             st.write("None detected")
+                    with col1:
+                        st.markdown("### 🔍 Detected Patterns")
+                        if detected:
+                            for item in detected:
+                                st.markdown(f"- {item}")
+                        else:
+                            st.write("None detected")
                     
                     # with col2:
                     #     st.markdown("### ❌ Not Detected")

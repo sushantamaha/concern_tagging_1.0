@@ -74,7 +74,7 @@ def main():
     
     # Create text input area
     user_input = st.text_area(
-        "Please enter your thoughts or concerns:",
+        "Please enter your thoughts:",
         height=200,
         placeholder="Share what's on your mind..."
     )

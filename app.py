@@ -20,7 +20,7 @@ st.write("Please provide your concern or message, and we will analyze it to iden
 def initialize_model():
     return ChatGoogleGenerativeAI(
         model='gemini-pro',
-        temperature=0.9,
+        temperature=0.5,
         api_key=st.secrets["GOOGLE_API_KEY"]  # Store your API key in Streamlit secrets
     )
 

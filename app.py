@@ -73,7 +73,7 @@ def evaluate_report(report_text, llm):
 
 def display_metric_rows(detected_concerns):
     # Define number of columns per row
-    cols_per_row = 4
+    cols_per_row = 6
     
     # Calculate number of rows needed
     num_rows = (len(detected_concerns) + cols_per_row - 1) // cols_per_row

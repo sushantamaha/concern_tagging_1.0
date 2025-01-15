@@ -91,11 +91,11 @@ def main():
                     # Collect only detected concerns
                     detected = [k.replace("_", " ").title() for k, v in results.items() if v == True]
                     
-                    # Display results inside a grid layout (No box around it)
+                    # Display results inside a grid layout (5 items per row)
                     st.subheader("Analysis Results")
                     
                     if detected:
-                        # Create a grid layout with 5 items per row
+                        # Create a grid layout with 5 items per row, wrapping automatically
                         with st.container():
                             st.markdown("""
                                 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">

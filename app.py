@@ -85,36 +85,32 @@ def main():
             if len(user_input) <= 1000 :  
                 with st.spinner("Analyzing your text..."):
                     # Get evaluation results
-                    
                     results = evaluate_report(user_input, llm)
                     
-                    # Convert results to DataFrame for better display
+                    # Collect only detected concerns
                     detected = [k.replace("_", " ").title() for k, v in results.items() if v == True]
-                    not_detected = [k.replace("_", " ").title() for k, v in results.items() if v == False]
-                    unclear = [k.replace("_", " ").title() for k, v in results.items() if v == 'unable']
                     
-                    # Display results
+                    # Display results inside a box (Container)
                     st.subheader("Analysis Results")
-                    
-                    # Detected Concerns (Interactive Buttons)
-                    st.markdown("### 🔍 Detected Patterns")
-                    for concern in detected:
-                        if st.button(f"Detected: {concern}"):
-                            st.info(f"More information about {concern}...")
-                    
-                    # Unclear Concerns
-                    if unclear:
-                        st.markdown("### ❓ Unclear Results")
-                        for concern in unclear:
-                            st.button(f"Unclear: {concern}")
-                    
+                    if detected:
+                        for concern in detected:
+                            with st.container():
+                                # Styling the box (Container)
+                                st.markdown(f"""
+                                    <div style="border: 2px solid #4CAF50; padding: 10px; margin-bottom: 10px; background-color: #e8f5e9; border-radius: 5px;">
+                                        <button style="width: 100%; padding: 15px; font-size: 18px; text-align: center; background-color: #4CAF50; color: white; border: none; cursor: pointer;">{concern}</button>
+                                    </div>
+                                """, unsafe_allow_html=True)
+                    else:
+                        st.write("No concerns detected.")
+
                     # Add a disclaimer
                     st.markdown("---")
                     st.markdown("""
                     **Disclaimer**: This analysis is for informational purposes only and should not be considered as professional medical advice. 
                     If you're experiencing mental health concerns, please consult with a qualified mental health professional.
                     """)
-            else :
+            else:
                 st.warning("Please enter less than 1000 words.")
         else:
             st.warning("Please enter some text to analyze.")

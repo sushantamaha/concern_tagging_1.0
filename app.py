@@ -6,14 +6,14 @@ import pandas as pd
 
 # Set page configuration
 st.set_page_config(
-    page_title="Mental Health Text Analyzer",
+    page_title="Concern Tagging",
     page_icon="🧠",
     layout="wide"
 )
 
 # Title and description
-st.title("Mental Health Text Analyzer")
-st.write("This tool analyzes text for various mental health-related patterns and concerns.")
+st.title("Mental Health Concern Tagging")
+st.write("Please provide your concern or message, and we will analyze it to identify and tag any relevant mental health-related patterns or concerns.")
 
 # Initialize the Google GenerativeAI model
 @st.cache_resource

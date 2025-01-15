@@ -81,57 +81,61 @@ def main():
     
     if st.button("Analyze"):
         if user_input:
-            with st.spinner("Analyzing your text..."):
-                # Get evaluation results
-                results = evaluate_report(user_input, llm)
-                
-                # Convert results to DataFrame for better display
-                df = pd.DataFrame([
-                    {"Category": k.replace("_", " ").title(), 
-                     "Detected": "Yes" if v == True else "No" if v == False else "Unclear"}
-                    for k, v in results.items()
-                ])
-                
-                # Display results
-                st.subheader("Analysis Results")
-                
-                # Create three columns for different types of results
-                detected = df[df["Detected"] == "Yes"]["Category"].tolist()
-                not_detected = df[df["Detected"] == "No"]["Category"].tolist()
-                unclear = df[df["Detected"] == "Unclear"]["Category"].tolist()
-                
-                col1, col2, col3 = st.columns(3)
-                
-                with col1:
-                    st.markdown("### 🔍 Detected Patterns")
-                    if detected:
-                        for item in detected:
-                            st.markdown(f"- {item}")
-                    else:
-                        st.write("None detected")
-                
-                with col2:
-                    st.markdown("### ❌ Not Detected")
-                    if not_detected:
-                        for item in not_detected:
-                            st.markdown(f"- {item}")
-                    else:
-                        st.write("None")
-                
-                with col3:
-                    st.markdown("### ❓ Unclear")
-                    if unclear:
-                        for item in unclear:
-                            st.markdown(f"- {item}")
-                    else:
-                        st.write("None")
-                
+            if len(user_input) <= 700 :  
+                with st.spinner("Analyzing your text..."):
+                    # Get evaluation results
+                    
+                    results = evaluate_report(user_input, llm)
+                    
+                    # Convert results to DataFrame for better display
+                    df = pd.DataFrame([
+                        {"Category": k.replace("_", " ").title(), 
+                         "Detected": "Yes" if v == True else "No" if v == False else "Unclear"}
+                        for k, v in results.items()
+                    ])
+                    
+                    # Display results
+                    st.subheader("Analysis Results")
+                    
+                    # Create three columns for different types of results
+                    detected = df[df["Detected"] == "Yes"]["Category"].tolist()
+                    not_detected = df[df["Detected"] == "No"]["Category"].tolist()
+                    unclear = df[df["Detected"] == "Unclear"]["Category"].tolist()
+                    
+                    col1, col2, col3 = st.columns(3)
+                    
+                    with col1:
+                        st.markdown("### 🔍 Detected Patterns")
+                        if detected:
+                            for item in detected:
+                                st.markdown(f"- {item}")
+                        else:
+                            st.write("None detected")
+                    
+                    with col2:
+                        st.markdown("### ❌ Not Detected")
+                        if not_detected:
+                            for item in not_detected:
+                                st.markdown(f"- {item}")
+                        else:
+                            st.write("None")
+                    
+                    with col3:
+                        st.markdown("### ❓ Unclear")
+                        if unclear:
+                            for item in unclear:
+                                st.markdown(f"- {item}")
+                        else:
+                            st.write("None")
+                    
                 # Add a disclaimer
                 st.markdown("---")
                 st.markdown("""
                 **Disclaimer**: This analysis is for informational purposes only and should not be considered as professional medical advice. 
                 If you're experiencing mental health concerns, please consult with a qualified mental health professional.
                 """)
+            else :
+                st.warning("Please enter less than 500 words.")
         else:
             st.warning("Please enter some text to analyze.")
 

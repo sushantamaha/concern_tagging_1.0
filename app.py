@@ -33,7 +33,7 @@ prompts = {
     "negative_thinking": "Does the following text show patterns of pessimistic thoughts, self-criticism, or focusing primarily on negative aspects of situations? Answer 'True' if yes, 'False' if no.\nText: {text}",
     "loneliness": "Does the following text express feelings of isolation, disconnection from others, or a desire for more meaningful relationships? Does it discuss social isolation or difficulty connecting with others? Answer 'True' if yes, 'False' if no.\nText: {text}",
     "self_improvement": "Does the following text discuss personal growth, development goals, or efforts to better oneself? Does it mention strategies or plans for improving mental health, habits, or life circumstances? Answer 'True' if yes, 'False' if no.\nText: {text}",
-    "anger": "Does the following text express feelings of intense frustration, rage, or irritability? Does it mention difficulty controlling emotions or aggressive thoughts? Answer 'True' if yes, 'False' if no.\nText: {text}",
+    "anger": "Does the following text address themes of loss, grief, or coping with major life changes? Does it convey emotions associated with mourning or processing significant loss? Respond with 'True' if yes, 'False' if no.\nText: {text}",
     "grief": "Does the following text discuss experiences of loss, bereavement, or processing difficult life changes? Does it express emotions related to mourning or dealing with significant losses? Answer 'True' if yes, 'False' if no.\nText: {text}",
     "sleep": "Does the following text mention difficulties with sleep patterns, insomnia, or unusual sleep behaviors? Does it discuss changes in sleep quality or quantity? Answer 'True' if yes, 'False' if no.\nText: {text}",
     "ocd": "Does the following text describe recurring thoughts, compulsive behaviors, or strict routines that feel necessary? Does it mention distress about order, cleanliness, or repeated checking? Answer 'True' if yes, 'False' if no.\nText: {text}",
@@ -112,21 +112,21 @@ def main():
                         else:
                             st.write("None detected")
                     
-                    with col2:
-                        st.markdown("### ❌ Not Detected")
-                        if not_detected:
-                            for item in not_detected:
-                                st.markdown(f"- {item}")
-                        else:
-                            st.write("None")
+                    # with col2:
+                    #     st.markdown("### ❌ Not Detected")
+                    #     if not_detected:
+                    #         for item in not_detected:
+                    #             st.markdown(f"- {item}")
+                    #     else:
+                    #         st.write("None")
                     
-                    with col3:
-                        st.markdown("### ❓ Unclear")
-                        if unclear:
-                            for item in unclear:
-                                st.markdown(f"- {item}")
-                        else:
-                            st.write("None")
+                    # with col3:
+                    #     st.markdown("### ❓ Unclear")
+                    #     if unclear:
+                    #         for item in unclear:
+                    #             st.markdown(f"- {item}")
+                    #     else:
+                    #         st.write("None")
                     
                 # Add a disclaimer
                 st.markdown("---")

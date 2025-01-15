@@ -92,18 +92,22 @@ def main():
                     
                     # Display results inside a box (Container)
                     st.subheader("Analysis Results")
+                    
                     if detected:
-                        for concern in detected:
-                            with st.container():
-                                # Styling the box (Container)
-                                st.markdown(f"""
-                                    <div style="border: 2px solid #4CAF50; padding: 10px; margin-bottom: 10px; background-color: #e8f5e9; border-radius: 5px;">
-                                        <button style="width: 100%; padding: 15px; font-size: 18px; text-align: center; background-color: #4CAF50; color: white; border: none; cursor: pointer;">{concern}</button>
-                                    </div>
-                                """, unsafe_allow_html=True)
+                        # Create a box with all the buttons inside it
+                        with st.container():
+                            st.markdown("""
+                                <div style="border: 2px solid #4CAF50; padding: 10px; margin-bottom: 10px; background-color: #e8f5e9; border-radius: 5px;">
+                            """, unsafe_allow_html=True)
+                            
+                            for concern in detected:
+                                if st.button(f"{concern}"):
+                                    st.info(f"More information about {concern}...")
+                                    
+                            st.markdown("</div>", unsafe_allow_html=True)
                     else:
                         st.write("No concerns detected.")
-
+                    
                     # Add a disclaimer
                     st.markdown("---")
                     st.markdown("""

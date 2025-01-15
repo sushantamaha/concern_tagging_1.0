@@ -81,7 +81,7 @@ def main():
     
     if st.button("Analyze"):
         if user_input:
-            if len(user_input) <= 700 :  
+            if len(user_input) <= 1000 :  
                 with st.spinner("Analyzing your text..."):
                     # Get evaluation results
                     
@@ -135,7 +135,7 @@ def main():
                 If you're experiencing mental health concerns, please consult with a qualified mental health professional.
                 """)
             else :
-                st.warning("Please enter less than 500 words.")
+                st.warning("Please enter less than 1000 words.")
         else:
             st.warning("Please enter some text to analyze.")
 

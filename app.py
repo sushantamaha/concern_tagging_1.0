@@ -110,7 +110,7 @@ def main():
     llm = initialize_model()
     
     user_input = st.text_area(
-        "Please enter your thoughts or feelings - :",
+        "Feel free to share your thoughts. Just remember, on this exclusive free plan, we can only process one question per minute—don’t overwhelm us! ",
         height=200,
         placeholder="Share what's on your mind..."
     )

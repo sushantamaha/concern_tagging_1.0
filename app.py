@@ -71,10 +71,44 @@ def evaluate_report(report_text, llm):
 
 
 
+def display_metric_rows(detected_concerns):
+    # Define number of columns per row
+    cols_per_row = 4
+    
+    # Calculate number of rows needed
+    num_rows = (len(detected_concerns) + cols_per_row - 1) // cols_per_row
+    
+    # Create rows and add metrics
+    for i in range(num_rows):
+        # Create columns for this row
+        cols = st.columns(cols_per_row)
+        
+        # Fill columns with metrics
+        for j in range(cols_per_row):
+            idx = i * cols_per_row + j
+            if idx < len(detected_concerns):
+                concern = detected_concerns[idx]
+                with cols[j]:
+                    st.markdown(f"""
+                        <div style="
+                            background-color: #4CAF50;
+                            color: white;
+                            padding: 1rem;
+                            border-radius: 10px;
+                            text-align: center;
+                            margin: 0.5rem 0;
+                            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                            cursor: pointer;
+                            transition: transform 0.2s;
+                            hover: transform: scale(1.02);
+                        ">
+                            <h3 style="margin: 0; font-size: 1.1rem;">{concern}</h3>
+                        </div>
+                    """, unsafe_allow_html=True)
+
 def main():
     llm = initialize_model()
     
-    # Create text input area
     user_input = st.text_area(
         "Please enter your thoughts or feelings - :",
         height=200,
@@ -83,40 +117,18 @@ def main():
     
     if st.button("Analyze"):
         if user_input:
-            if len(user_input) <= 1000 :  
+            if len(user_input) <= 1000:
                 with st.spinner("Analyzing your text..."):
-                    # Get evaluation results
                     results = evaluate_report(user_input, llm)
-                    
-                    # Collect only detected concerns
                     detected = [k.replace("_", " ").title() for k, v in results.items() if v == True]
                     
-                    # Display results inside a grid layout (5 items per row)
                     st.subheader("Analysis Results")
                     
                     if detected:
-                        # Create a grid layout with 5 items per row, filling left-to-right, top-to-bottom
-                        rows = [detected[i:i + 5] for i in range(0, len(detected), 5)]  # Split the list into chunks of 5
-                        
-                        with st.container():
-                            for row in rows:
-                                st.markdown("""
-                                    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
-                                """, unsafe_allow_html=True)
-                                
-                                # Display each concern in a grid item
-                                for concern in row:
-                                    st.markdown(f"""
-                                        <div style="padding: 10px; background-color: #4CAF50; color: white; border-radius: 5px; text-align: center; min-height: 50px;">
-                                            {concern}
-                                        </div>
-                                    """, unsafe_allow_html=True)
-                                
-                                st.markdown("</div>", unsafe_allow_html=True)
+                        display_metric_rows(detected)
                     else:
                         st.write("No concerns detected.")
                     
-                    # Add a disclaimer
                     st.markdown("---")
                     st.markdown("""
                     **Disclaimer**: This analysis is for informational purposes only and should not be considered as professional medical advice. 

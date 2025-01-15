@@ -97,13 +97,17 @@ def main():
                         # Create a box with all the buttons inside it
                         with st.container():
                             st.markdown("""
-                                <div style="border: 2px solid #4CAF50; padding: 10px; margin-bottom: 10px; background-color: #e8f5e9; border-radius: 5px;">
+                                <div style="border: 2px solid #4CAF50; padding: 10px; margin-bottom: 10px; background-color: #e8f5e9; border-radius: 5px; display: flex; flex-wrap: wrap;">
                             """, unsafe_allow_html=True)
                             
+                            # Display each detected concern as a button-like shape
                             for concern in detected:
-                                if st.button(f"{concern}"):
-                                    st.info(f"More information about {concern}...")
-                                    
+                                st.markdown(f"""
+                                    <div style="margin: 5px; padding: 10px; background-color: #4CAF50; color: white; border-radius: 5px; text-align: center;">
+                                        {concern}
+                                    </div>
+                                """, unsafe_allow_html=True)
+                            
                             st.markdown("</div>", unsafe_allow_html=True)
                     else:
                         st.write("No concerns detected.")

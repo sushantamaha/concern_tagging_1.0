@@ -95,21 +95,24 @@ def main():
                     st.subheader("Analysis Results")
                     
                     if detected:
-                        # Create a grid layout with 5 items per row, wrapping automatically
+                        # Create a grid layout with 5 items per row, filling left-to-right, top-to-bottom
+                        rows = [detected[i:i + 5] for i in range(0, len(detected), 5)]  # Split the list into chunks of 5
+                        
                         with st.container():
-                            st.markdown("""
-                                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
-                            """, unsafe_allow_html=True)
-                            
-                            # Display each detected concern as a grid item
-                            for concern in detected:
-                                st.markdown(f"""
-                                    <div style="padding: 10px; background-color: #4CAF50; color: white; border-radius: 5px; text-align: center; min-height: 50px;">
-                                        {concern}
-                                    </div>
+                            for row in rows:
+                                st.markdown("""
+                                    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
                                 """, unsafe_allow_html=True)
-                            
-                            st.markdown("</div>", unsafe_allow_html=True)
+                                
+                                # Display each concern in a grid item
+                                for concern in row:
+                                    st.markdown(f"""
+                                        <div style="padding: 10px; background-color: #4CAF50; color: white; border-radius: 5px; text-align: center; min-height: 50px;">
+                                            {concern}
+                                        </div>
+                                    """, unsafe_allow_html=True)
+                                
+                                st.markdown("</div>", unsafe_allow_html=True)
                     else:
                         st.write("No concerns detected.")
                     

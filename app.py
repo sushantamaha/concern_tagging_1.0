@@ -101,10 +101,10 @@ def main():
                                 <div style="border: 2px solid #4CAF50; padding: 10px; margin-bottom: 10px; background-color: #e8f5e9; border-radius: 5px; display: flex; flex-wrap: wrap;">
                             """, unsafe_allow_html=True)
                             
-                            # Display each detected concern as a button-like shape
+                            # Display each detected concern as a button-like shape in a row
                             for concern in detected:
                                 st.markdown(f"""
-                                    <div style="margin: 5px; padding: 10px; background-color: #4CAF50; color: white; border-radius: 5px; text-align: center; min-width: 100px; flex-grow: 1;">
+                                    <div style="margin: 5px; padding: 10px; background-color: #4CAF50; color: white; border-radius: 5px; text-align: center; min-width: 100px; flex: 1 1 150px;">
                                         {concern}
                                     </div>
                                 """, unsafe_allow_html=True)

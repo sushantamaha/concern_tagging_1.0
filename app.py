@@ -99,7 +99,8 @@ def display_metric_rows(detected_concerns):
                             margin: 0.5rem 0;
                             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
                             cursor: pointer;
-                            
+                            transition: transform 0.2s;
+                            hover: transform: scale(1.02);
                         ">
                             <h3 style="margin: 0; font-size: 1.1rem;">{concern}</h3>
                         </div>

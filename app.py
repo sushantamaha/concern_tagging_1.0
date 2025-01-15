@@ -91,14 +91,14 @@ def main():
                     # Collect only detected concerns
                     detected = [k.replace("_", " ").title() for k, v in results.items() if v == True]
                     
-                    # Display results inside a box (Container)
+                    # Display results inside a grid layout (No box around it)
                     st.subheader("Analysis Results")
                     
                     if detected:
-                        # Create a box with all the buttons inside it using CSS Grid
+                        # Create a grid layout with 5 items per row
                         with st.container():
                             st.markdown("""
-                                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; border: 2px solid #4CAF50; padding: 10px; margin-bottom: 10px; background-color: #e8f5e9; border-radius: 5px;">
+                                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
                             """, unsafe_allow_html=True)
                             
                             # Display each detected concern as a grid item

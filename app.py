@@ -102,7 +102,7 @@ def main():
                     not_detected = df[df["Detected"] == "No"]["Category"].tolist()
                     unclear = df[df["Detected"] == "Unclear"]["Category"].tolist()
                     
-                    col1 = st.columns(1)
+                    col1 = st.columns(3)
                     
                     with col1:
                         st.markdown("### 🔍 Detected Patterns")

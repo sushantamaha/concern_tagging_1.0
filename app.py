@@ -13,7 +13,7 @@ st.set_page_config(
 
 # Title and description
 st.title("Mental Health Concern Tagging")
-st.write("Please provide your concern or message, and we will analyze it to identify and tag any relevant mental health-related patterns or concerns from this list - Anxiety, Depression, Overthinking, Stress, NegativeThinking, Loneliness, SelfImprovement, Anger, Grief, Sleep, Ocd, SexualDysfunction, Bipolar, Addiction.")
+st.write("Please provide your concern or message, and we will analyze it to identify and tag any relevant mental health-related patterns or concerns from this list - Anxiety, Depression, Overthinking, Stress, Negative Thinking, Loneliness, Self Improvement, Anger, Grief, Sleep, Ocd, Sexual Dysfunction, Bipolar, Addiction.")
 
 # Initialize the Google GenerativeAI model
 @st.cache_resource

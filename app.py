@@ -38,7 +38,7 @@ prompts = {
     "sleep": "Does the following text mention difficulties with sleep patterns, insomnia, or unusual sleep behaviors? Does it discuss changes in sleep quality or quantity? Answer 'True' if yes, 'False' if no.\nText: {text}",
     "ocd": "Does the following text describe recurring thoughts, compulsive behaviors, or strict routines that feel necessary? Does it mention distress about order, cleanliness, or repeated checking? Answer 'True' if yes, 'False' if no.\nText: {text}",
     "sexual_dysfunction": "Does the following text discuss concerns about sexual health, intimacy issues, or changes in sexual function? Does it mention distress about sexual performance or satisfaction? Answer 'True' if yes, 'False' if no.\nText: {text}",
-    "bipolar": "Does the following text describe significant mood swings, periods of unusually high energy alternating with low periods, or dramatic changes in behavior and thinking? Answer 'True' if yes, 'False' if no.\nText: {text}",
+    "bipolar": "Does the following text describe extreme mood fluctuations, including periods of unusually high energy or euphoria (mania or hypomania) followed by episodes of deep sadness or low energy (depression)? Does it mention significant changes in behavior, impulsivity, or unrealistic beliefs during these shifts? Respond with 'True' if yes, 'False' if no.\nText: {text}",
     "addiction": "Does the following text discuss struggles with substance use, compulsive behaviors, or difficulty controlling specific activities? Does it mention impact on daily life due to these behaviors? Answer 'True' if yes, 'False' if no.\nText: {text}"
 }
 

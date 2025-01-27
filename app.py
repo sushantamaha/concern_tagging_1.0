@@ -21,7 +21,7 @@ def initialize_model():
     return ChatGoogleGenerativeAI(
         model='gemini-pro',
         temperature=0.5,
-        api_key=st.secrets["GOOGLE_API_KEY"]  # Store your API key in Streamlit secrets
+        api_key=st.secrets["GOOGLE_API_KEY"] ,  # Store your API key in Streamlit secrets
         seed=12345
     )
 

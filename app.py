@@ -22,6 +22,7 @@ def initialize_model():
         model='gemini-pro',
         temperature=0.5,
         api_key=st.secrets["GOOGLE_API_KEY"]  # Store your API key in Streamlit secrets
+        seed=12345
     )
 
 # Define prompts dictionary
